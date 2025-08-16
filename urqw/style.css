@@ -1,0 +1,20 @@
+/**
+ * This file is part of the Trapped in Time game.
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
+.game_title {
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.game_subtitle {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.game_author {
+    font-size: 1.25em;
+    text-align: center;
+}
