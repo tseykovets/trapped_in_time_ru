@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+	<story>
+		<identification>
+			<ifid>5CED8A6C-E644-419A-9A26-EFFF3B610BE9</ifid>
+			<format>urqw</format>
+		</identification>
+		<bibliographic>
+			<title>В ловушке времени</title>
+			<author>Симон Кристиансен и Никита Цейковец</author>
+			<language>ru</language>
+			<headline>Научно-фантастическое приключение, в котором герой — это вы!</headline>
+			<firstpublished>2025-08-16</firstpublished>
+			<genre>Научная фантастика</genre>
+			<group>URQ</group>
+			<description>Вы стоите перед великолепным небоскрёбом, в котором располагается Копенгагенский институт хронологии — ведущий мировой центр хронологических исследований.<br/>
+				Несмотря на многолетние хроно-тренировки, вы не можете отделаться от ощущения порхания бабочек в животе. Сегодня настал тот самый день! Наконец-то ваше обучение даст свои плоды.</description>
+		</bibliographic>
+		<contacts>
+			<url>https://urqw.github.io/UrqW/#trapped_in_time_ru</url>
+			<authoremail>tseikovets@rambler.ru</authoremail>
+		</contacts>
+		<colophon>
+			<generator>Nikita Tseykovets</generator>
+			<originated>2025-08-24</originated>
+		</colophon>
+	</story>
+</ifindex>
