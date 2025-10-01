@@ -241,9 +241,9 @@ pln Вы замечаете своего хорошего друга Бента 
 pln Лицо Бента озаряется, и он жмёт вам руку. «Доброе утро. Я только что проверил оборудование, и всё в идеальном состоянии. Ты готов?»
 pln «Конечно. Я годами готовился к этому дню».
 p «Естественно!» — смеётся Бент. «С нетерпением жду рассказа о твоих впечатлениях, когда ты вернёшься. Но мне пора. Профессор Халворсен отправил меня за запчастями. Удачи во всём!»
-if not (inspect_equipment or experience or chrono_gun or near_death_experience) \
-then pln #$Бент продолжает спускаться по лестнице и вскоре исчезает в толпе. \
-else pln
+if not (inspect_equipment or experience or chrono_gun or near_death_experience)
+_ then pln #$Бент продолжает спускаться по лестнице и вскоре исчезает в толпе.
+_ else pln
 /*
 Если вы проходите внутрь здания, перейдите к 36.
 Вы также можете проверить своё снаряжение, если вы ещё этого не сделали, перейдя к 56.
@@ -404,8 +404,8 @@ pln «Кажется, вы заблудились», — говорит охра
 Он провожает вас обратно в вестибюль, и вы решаете двигаться дальше.
 Перейдите к 42.
 */
-if not (inspect_equipment or experience or chrono_gun or near_death_experience) \
-then pln Он провожает вас обратно в вестибюль.
+if not (inspect_equipment or experience or chrono_gun or near_death_experience)
+_ then pln Он провожает вас обратно в вестибюль.
 btn 42, Двигаться дальше
 if inspect_equipment then btn 44, Показать охраннику свою карточку
 if experience then btn 54, Рассказать охраннику о своих впечатлениях
@@ -975,9 +975,9 @@ end
 javascript = "JSON.stringify(shuffleArray(JSON.parse('" + adventure_list + "')));"
 adventure_queue = javascript
 javascript = "JSON.parse('" + adventure_queue + "')[0];"
-if javascript = adventure then \
-	javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1).concat('" + adventure + "'));" &\
-	adventure_queue = javascript
+if javascript = adventure then
+_ javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1).concat('" + adventure + "'));" &
+_ adventure_queue = javascript
 goto travel_next
 end
 
