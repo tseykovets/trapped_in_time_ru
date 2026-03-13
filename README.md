@@ -4,7 +4,7 @@ Text-based game "Trapped in Time" (Russian: "В ловушке времени") 
 
 The game is in Russian and developed for [UrqW](https://github.com/urqw/UrqW) text-based game engine.
 
-This repository contains the source code and other resources of the game. The game is available for launch in the [UrqW engine online catalog](https://urqw.github.io/UrqW/#trapped_in_time_ru). See the original English version [here](https://github.com/tseykovets/trapped_in_time).
+This repository contains the source code and other resources of the game. The game is available for launch in the [UrqW engine online catalog](https://urqw.github.io/UrqW/?id=trapped_in_time_ru). See the original English version [here](https://github.com/tseykovets/trapped_in_time).
 
 The game was first published on August 16, 2025.
 
