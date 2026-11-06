@@ -1,44 +1,25 @@
 /**
+ * Written in 2025 by Nikita Tseykovets <tseikovets@rambler.ru>
  * This file is part of UrqW Game Template.
  * SPDX-License-Identifier: CC0-1.0
  */
 
 const fs = require('fs');
-const path = require('path');
-const readline = require('readline');
 const uuid = require('uuid');
 
-const rootDir = path.resolve(__dirname, '..');
-const manifestPath = path.join(rootDir, 'urqw', 'manifest.json');
+const { rootDir, manifestFile, rl, readManifest } = require('./common');
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-async function readManifest() {
-    try {
-        const data = await fs.promises.readFile(manifestPath, 'utf-8');
-        return JSON.parse(data);
-    } catch (err) {
-        if (err.code === 'ENOENT') {
-            return {};
-        }
-        throw err;
-    }
-}
-
-async function writeManifest(data) {
-    await fs.promises.writeFile(manifestPath, JSON.stringify(data, null, 2), 'utf-8');
+async function writeManifest(file, data) {
+    await fs.promises.writeFile(file, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 async function promptUser(currentValue, promptText) {
     return new Promise((resolve) => {
         let question;
         if (currentValue) {
-            question = `${promptText} (current value: "${currentValue}"),\nor enter an empty string to leave the current value unchanged: `;
+            question = `${promptText}\n(current value: "${currentValue}"),\nor enter an empty string to leave the current value unchanged:\n> `;
         } else {
-            question = `${promptText}: `;
+            question = `${promptText}:\n> `;
         }
         rl.question(question, (answer) => {
             resolve(answer.trim() || currentValue);
@@ -48,16 +29,16 @@ async function promptUser(currentValue, promptText) {
 
 async function main() {
     try {
-        const manifest = await readManifest();
+        const manifest = await readManifest(manifestFile);
     
         const urqw_title = await promptUser(manifest.urqw_title || '', 'Enter the game page title');
         manifest.urqw_title = urqw_title;
     
-        const urqw_game_lang = await promptUser(manifest.urqw_game_lang || '', 'Enter the game text language code');
+        const urqw_game_lang = await promptUser(manifest.urqw_game_lang || '', 'Enter the game text language (an ISO-639 two- or three-letter language code, optionally followed by a hyphen and an ISO-3166 country code)');
         manifest.urqw_game_lang = urqw_game_lang;
     
         let ifidGen = false;
-if (!manifest.urqw_game_ifid) {
+        if (!manifest.urqw_game_ifid) {
             manifest.urqw_game_ifid = uuid.v4().toUpperCase();
             ifidGen = true;
         }
@@ -66,13 +47,13 @@ if (!manifest.urqw_game_ifid) {
             manifest.game_encoding = 'UTF-8';
         }
 
-        if (manifest.urq_mode !== 'dosurq' && manifest.urq_mode !== 'ripurq') {
+        if (!['ripurq', 'dosurq', 'akurq'].includes(manifest.urq_mode)) {
             manifest.urq_mode = 'urqw';
         }
 
         manifest.manifest_version = 1;
 
-        await writeManifest(manifest);
+        await writeManifest(manifestFile, manifest);
     
         let = message = 'Successfully saved manifest.json';
         if (ifidGen) {
