@@ -1,5 +1,7 @@
 /*
 The file encoding is UTF-8 without BOM; the newline format is LF
+Written in 2013 by Simon Christiansen
+Written in 2025, 2026 by Nikita Tseykovets
 This file is part of the Trapped in Time game.
 SPDX-License-Identifier: CC0-1.0
 */
@@ -24,9 +26,11 @@ chrono_gun = 0
 near_death_experience = 0
 extra_information = 0
 suicide = 0
-javascript = "JSON.stringify(shuffleArray(['11', '48', '52', '62', '70']).concat('1'));"
-adventure_list = javascript
-adventure_queue = javascript
+adventure_list = ArrayCreate()
+ArrayAdd(adventure_list, "11", "48", "52", "62", "70")
+ArrayShuffle(adventure_list)
+ArrayAdd(adventure_list, "1")
+adventure_queue = ArrayCopy(adventure_list)
 goto 1
 
 :1
@@ -959,25 +963,19 @@ btn travel, Использовать свою способность путеш�
 end
 
 :travel
-javascript = "JSON.parse('" + adventure_queue + "').length;"
-if javascript > 0 then goto travel_next else goto travel_restart
+if ArrayLen(adventure_queue) > 0 then goto travel_next else goto travel_restart
 end
 
 :travel_next
-javascript = "JSON.parse('" + adventure_queue + "')[0];"
-adventure = javascript
-javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1));"
-adventure_queue = javascript
+adventure = ArrayGet(adventure_queue, 1)
+ArrayDel(adventure_queue, 1, 1)
 goto #adventure$
 end
 
 :travel_restart
-javascript = "JSON.stringify(shuffleArray(JSON.parse('" + adventure_list + "')));"
-adventure_queue = javascript
-javascript = "JSON.parse('" + adventure_queue + "')[0];"
-if javascript = adventure then
-_ javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1).concat('" + adventure + "'));" &
-_ adventure_queue = javascript
+ArrayShuffle(adventure_list)
+adventure_queue = ArrayCopy(adventure_list)
+if ArrayGet(adventure_queue, 1) = adventure then ArrayDel(adventure_queue, 1, 1) & ArrayAdd(adventure_queue, adventure)
 goto travel_next
 end
 

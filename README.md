@@ -69,7 +69,7 @@ Trapped in Time - text-based game for UrqW engine
 
 Written in 2013 by Simon Christiansen
 
-Written in 2025 by Nikita Tseykovets
+Written in 2025, 2026 by Nikita Tseykovets
 
 To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to the software and the text contained therein to the public domain worldwide. the software and the text contained therein are distributed without any warranty.
 
